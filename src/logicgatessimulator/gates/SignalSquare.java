@@ -51,11 +51,11 @@ public abstract class SignalSquare extends JPanel{
         l.setFont(new Font("Monospaced", Font.BOLD, 10));
         
         if(s == Signal.ONE) {
-            l.setText("1");
+            //l.setText("1");
             setBackground(Color.GREEN);
         }
         else {
-            l.setText("0");
+            //l.setText("0");
             setBackground(Color.RED);
         }
         

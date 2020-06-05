@@ -360,6 +360,7 @@ public class MainController {
     //////////////////////////////////////////////
     private static void calculate(){
         try {
+            if(!checkColisions()) return;
             setVar();
             displayVars();
 
@@ -374,7 +375,11 @@ public class MainController {
             int[] allSolves = s.solve();
             int[] solve = filterSolve(allSolves);
             
-            JOptionPane.showMessageDialog(null, "<html>ROZWI¥ZANIE:<BR>" + Arrays.toString(solve));
+            if(allSolves[0] == 0 ) JOptionPane.showMessageDialog(null, "BRAK ROZWI¥ZAÑ");
+            else {
+                JOptionPane.showMessageDialog(null, "<html>ROZWI¥ZANIE:<BR>" + Arrays.toString(solve) + "<BR>Po wciœniêciu OK rozwi¹zania zostan¹ naniesione na rysunek");
+                displaySolve(allSolves);
+            }
         }
         catch(Exception e){
             e.printStackTrace();
@@ -471,7 +476,7 @@ public class MainController {
             boolean contains = false;
             for(Line l : lines){
                 int id1 = gates.get(l.getGateIdInput()).getInputSquare().get(l.getInputId()).getVarId();
-                int id2 = gates.get(l.getGateIdInput()).getOutputSquare().getVarId();
+                int id2 = gates.get(l.getOutputId()).getOutputSquare().getVarId();
                 if(id1 == i || id2 == i) {
                     contains = true;
                 }
@@ -480,5 +485,41 @@ public class MainController {
         }
         
         return vars.stream().mapToInt(i -> i).toArray();
+    }
+    
+    private static void displaySolve(int[] solves){
+        for(Gate g : gates){
+            for(SignalSquare s : g.getInputSquare()){
+                if(s.getSignal() == Signal.UNDEFINDED){
+                    for(int solve : solves) 
+                        if(Math.abs(solve)==s.getVarId()) {
+                            s.setSignal(solve > 0? Signal.ONE : Signal.ZERO);
+                            break;
+                        }                            
+                }
+            }
+            if(g.getOutputSquare().getSignal() == Signal.UNDEFINDED){
+                for(int solve : solves) 
+                    if(Math.abs(solve)==g.getOutputSquare().getVarId()) {
+                        g.getOutputSquare().setSignal(solve > 0? Signal.ONE : Signal.ZERO);
+                        break;
+                    }                            
+            }
+        }
+        
+        Main.mainFrame.validate();
+        Main.mainFrame.repaint();
+    }
+    
+    private static boolean checkColisions(){
+        for(Line l : lines){
+            Signal s1 = gates.get(l.getGateIdInput()).getInputSquare().get(l.getInputId()).getSignal();
+            Signal s2 = gates.get(l.getOutputId()).getOutputSquare().getSignal();
+            if(s1 != Signal.UNDEFINDED && s2 != Signal.UNDEFINDED && s1 != s2) {
+                JOptionPane.showMessageDialog(null, "Wykryto kolizjê sygna³ów. Popraw dane wejœciowe.");
+                return false;
+            }
+        }
+        return true;
     }
 }
