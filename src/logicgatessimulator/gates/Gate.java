@@ -29,7 +29,7 @@ public abstract class Gate extends JPanel{
     
     // Pola klasy: wejœcia wyjœcie oraz po³o¿enie
     protected ArrayList<InputSquare> inputSquares;
-    OutputSquare outputSquare;
+    protected OutputSquare outputSquare;
     private int x = DEFAULT_POSITION;
     private int y = DEFAULT_POSITION;
     private boolean selected = false;

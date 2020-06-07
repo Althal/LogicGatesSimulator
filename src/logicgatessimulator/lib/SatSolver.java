@@ -3,6 +3,7 @@ package logicgatessimulator.lib;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import javax.swing.JOptionPane;
 import org.sat4j.core.VecInt;
 import org.sat4j.minisat.SolverFactory;
 import org.sat4j.reader.DimacsReader;
@@ -52,8 +53,7 @@ public class SatSolver {
                 if(i.length != 0) solver.addClause(new VecInt(i));
             }
             catch(Exception e){
-                System.out.println("Nie dodano: " + Arrays.toString(i));
-                System.out.println("TRYWIALNA RAMKA?");
+                return new int[] {0};
             }
         }
 
@@ -66,7 +66,7 @@ public class SatSolver {
             ret = problem.findModel();            
             System.out.println(Arrays.toString(ret));
         } else {
-            System.out.println("ABC");
+            return new int[] {0};
         }
         
         return ret;

@@ -290,17 +290,6 @@ public class MainController {
         return false;
     }
     
-    private static ArrayList<OutputSquare> getOutputs(){
-        ArrayList<OutputSquare> ret = new ArrayList<>();
-        for(int i=0; i<gates.size(); i++) if(!isLineOutput(i)) ret.add(gates.get(i).getOutputSquare());
-        return ret;
-    }
-    
-    private static boolean isLineOutput(int gate){
-        for(Line l : lines) if(l.getOutputId() == gate) return true;
-        return false;
-    }
-    
     private static void addGate(Gate g){
         gates.add(g);
         Main.mainFrame.getArea().add(g);
@@ -378,7 +367,13 @@ public class MainController {
             if(allSolves[0] == 0 ) JOptionPane.showMessageDialog(null, "BRAK ROZWI¥ZAÑ");
             else {
                 JOptionPane.showMessageDialog(null, "<html>ROZWI¥ZANIE:<BR>" + Arrays.toString(solve) + "<BR>Po wciœniêciu OK rozwi¹zania zostan¹ naniesione na rysunek");
-                displaySolve(allSolves);
+                
+                int[] allSolvesAndSetted = new int[allSolves.length + setted.size()];
+                int index = 0;
+                for(int a : allSolves) allSolvesAndSetted[index++] = a;
+                for(int a : setted)    allSolvesAndSetted[index++] = a;
+                
+                displaySolve(allSolvesAndSetted);
             }
         }
         catch(Exception e){
@@ -491,20 +486,25 @@ public class MainController {
         for(Gate g : gates){
             for(SignalSquare s : g.getInputSquare()){
                 if(s.getSignal() == Signal.UNDEFINDED){
-                    for(int solve : solves) 
+                    for(int solve : solves) {
                         if(Math.abs(solve)==s.getVarId()) {
+                            System.out.println(s.getVarId());
                             s.setSignal(solve > 0? Signal.ONE : Signal.ZERO);
                             break;
-                        }                            
+                        }   
+                    }
                 }
+                else s.setSignal(s.getSignal());
             }
             if(g.getOutputSquare().getSignal() == Signal.UNDEFINDED){
-                for(int solve : solves) 
+                for(int solve : solves) {
                     if(Math.abs(solve)==g.getOutputSquare().getVarId()) {
                         g.getOutputSquare().setSignal(solve > 0? Signal.ONE : Signal.ZERO);
                         break;
-                    }                            
+                    } 
+                }
             }
+            else g.getOutputSquare().setSignal(g.getOutputSquare().getSignal());
         }
         
         Main.mainFrame.validate();
