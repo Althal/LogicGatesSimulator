@@ -22,7 +22,7 @@ public class NOT1Gate extends Gate {
 
     @Override
     public String getImageSrc() {
-        return "C:\\Users\\user\\Desktop\\LogicGatesSimulator\\src\\logicgatessimulator\\img\\NOT.PNG";
+        return "lib\\img\\NOT.PNG";
     }
     
 }

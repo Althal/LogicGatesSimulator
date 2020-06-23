@@ -49,7 +49,6 @@ public abstract class ANDGate extends Gate {
             default:
                 break;
         }
-        
         return ret;
     }
     

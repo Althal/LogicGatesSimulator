@@ -10,6 +10,6 @@ public class NAND4Gate extends NANDGate {
 
     @Override
     public String getImageSrc() {
-        return "C:\\Users\\user\\Desktop\\LogicGatesSimulator\\src\\logicgatessimulator\\img\\NAND4.PNG";
+        return "lib\\img\\NAND4.PNG";
     }
 }

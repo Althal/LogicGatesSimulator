@@ -10,6 +10,6 @@ public class OR4Gate extends ORGate {
 
     @Override
     public String getImageSrc() {
-        return "C:\\Users\\user\\Desktop\\LogicGatesSimulator\\src\\logicgatessimulator\\img\\OR4.PNG";
+        return "lib\\img\\OR4.PNG";
     }
 }

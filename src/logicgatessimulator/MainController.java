@@ -364,7 +364,7 @@ public class MainController {
             int[] allSolves = s.solve();
             int[] solve = filterSolve(allSolves);
             
-            if(allSolves[0] == 0 ) JOptionPane.showMessageDialog(null, "BRAK ROZWI¥ZAÑ");
+            if(allSolves[0] == 0) JOptionPane.showMessageDialog(null, "BRAK ROZWI¥ZAÑ");
             else {
                 JOptionPane.showMessageDialog(null, "<html>ROZWI¥ZANIE:<BR>" + Arrays.toString(solve) + "<BR>Po wciœniêciu OK rozwi¹zania zostan¹ naniesione na rysunek");
                 
@@ -402,7 +402,6 @@ public class MainController {
                         else {
                             g.getInputSquare().get(j).setVarId(os.getVarId());
                         }
-                        
                         setted = true;
                         break;
                     }                    

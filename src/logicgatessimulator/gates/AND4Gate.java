@@ -10,6 +10,6 @@ public class AND4Gate extends ANDGate {
 
     @Override
     public String getImageSrc() {
-        return "C:\\Users\\user\\Desktop\\LogicGatesSimulator\\src\\logicgatessimulator\\img\\AND4.PNG";
+        return "lib\\img\\AND4.PNG";
     }
 }

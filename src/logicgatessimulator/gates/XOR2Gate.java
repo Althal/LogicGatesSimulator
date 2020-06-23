@@ -26,7 +26,7 @@ public class XOR2Gate extends Gate {
 
     @Override
     public String getImageSrc() {
-        return "C:\\Users\\user\\Desktop\\LogicGatesSimulator\\src\\logicgatessimulator\\img\\XOR2.PNG";
+        return "lib\\img\\XOR2.PNG";
     }
     
 }

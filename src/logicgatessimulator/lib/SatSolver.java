@@ -50,7 +50,7 @@ public class SatSolver {
             System.out.println(Arrays.toString(i));
             try{
                 if(i.length != 0) solver.addClause(new VecInt(i));
-                else return new int[] {0}; 
+                else return new int[] {0};
             }
             catch(Exception e){
                 return new int[] {0};

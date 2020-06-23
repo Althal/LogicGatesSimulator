@@ -10,6 +10,6 @@ public class NOR2Gate extends NORGate {
 
     @Override
     public String getImageSrc() {
-        return "C:\\Users\\user\\Desktop\\LogicGatesSimulator\\src\\logicgatessimulator\\img\\NOR2.PNG";
+        return "lib\\img\\NOR2.PNG";
     }
 }

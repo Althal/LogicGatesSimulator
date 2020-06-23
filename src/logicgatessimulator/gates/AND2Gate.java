@@ -1,6 +1,8 @@
 
 package logicgatessimulator.gates;
 
+import java.io.File;
+
 
 public class AND2Gate extends ANDGate {
     
@@ -10,6 +12,7 @@ public class AND2Gate extends ANDGate {
 
     @Override
     public String getImageSrc() {
-        return "C:\\Users\\user\\Desktop\\LogicGatesSimulator\\src\\logicgatessimulator\\img\\AND2.PNG";
+        System.out.println(new File("a.txt").getAbsolutePath());
+        return "lib\\img\\AND2.PNG";
     }
 }
